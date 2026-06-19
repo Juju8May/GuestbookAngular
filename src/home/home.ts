@@ -11,7 +11,7 @@ import { Router, RouterOutlet } from '@angular/router';
 
 export class Home {
   title = 'Willkommen zum Gästebuch';
-  constructor(private router: Router) {
+  constructor(public router: Router) {
     this.router = router;
   }
   navigateToOverview(): void {

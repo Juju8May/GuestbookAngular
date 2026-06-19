@@ -19,7 +19,7 @@
 }
 
 .entry-card {
-    background: #ec489a70;
+    background:linear-gradient(160deg, #ec489a48 0%, white 100%);
     border: 1px solid #486d9e;
     padding: 1rem;
     box-shadow: 0 10px 22px -18px #334155;
@@ -70,5 +70,5 @@
   justify-self: center;
   padding: 0.75rem 1.25rem;
   border: solid 1px black;
-  background: #ec489a70;
+  background: #ec489a5e;
 }

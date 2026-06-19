@@ -1,9 +1,10 @@
-import { Entry } from "./entry";
+import { Entry } from "../home/entry";
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+
 @Component({
-    selector: 'app-overview',
+    selector: 'overview',
     standalone: true,
     imports: [DatePipe],
     templateUrl: './overview.html',
@@ -11,10 +12,9 @@ import { Router } from '@angular/router';
 })
 export class Overview {
 
-    title = 'Gästebuch';
-constructor(private router: Router) {
-    this.router = router;
-}
+    constructor(public router: Router) {
+        this.router = router;
+    }
     entries: Entry[] = [
         { id: 1, name: 'Julia', note: 'Die Sonne scheint heute stark.', time: new Date('2026-06-18T11:20:00') },
         { id: 2, name: 'Andreas', note: 'Mein Schrank baut sich von selbst auf.', time: new Date('2026-06-18T09:45:00') },
