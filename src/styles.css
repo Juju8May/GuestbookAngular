@@ -16,11 +16,19 @@ button.primary {
 body {
   font-family: 'Be Vietnam Pro', sans-serif;
 }
-.add-entry-button {
-  margin-top: 2rem;
-  display: flex;
-  justify-self: center;
-  padding: 0.75rem 1.25rem;
-  border: solid 1px black;
-  background: rgba(243, 201, 201, 0.658);
+
+.header-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 0.5rem;
+    background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 100%);
+    box-shadow: 0 10px 22px -18px #334155;
+}
+footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 1rem;
+    background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 100%);
+    color: #475569;
 }

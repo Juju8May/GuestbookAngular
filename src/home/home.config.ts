@@ -7,7 +7,7 @@
  */
 
 import {ApplicationConfig} from '@angular/core';
-import { routes } from './app.route';
+import { routes } from './home.route';
 import { provideRouter } from '@angular/router';
 
 export const appConfig: ApplicationConfig = {

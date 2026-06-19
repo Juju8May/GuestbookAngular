@@ -12,18 +12,6 @@
     padding: 2rem 1rem 3rem;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: clamp(1.8rem, 4vw, 2.4rem);
-    letter-spacing: -0.02em;
-    justify-self: center;
-}
-
-.header p {
-    margin-top: 0.45rem;
-    color: #475569;
-}
-
 .entry-list {
     display: grid;
     gap: 0.9rem;
@@ -31,7 +19,7 @@
 }
 
 .entry-card {
-    background: #fcd2d2cc;
+    background: #ec489a70;
     border: 1px solid #486d9e;
     padding: 1rem;
     box-shadow: 0 10px 22px -18px #334155;
@@ -75,4 +63,12 @@
         align-items: flex-start;
         gap: 0.35rem;
     }
+}
+.add-entry-button {
+  margin-top: 2rem;
+  display: flex;
+  justify-self: center;
+  padding: 0.75rem 1.25rem;
+  border: solid 1px black;
+  background: #ec489a70;
 }
