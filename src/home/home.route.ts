@@ -9,11 +9,6 @@ export const routes: Routes = [
         pathMatch: 'full',
     },
     {
-        path: 'home',
-        title: 'Startseite',
-        component: Home,
-    },
-    {
         path: 'overview',
         title: 'Übersicht',
         component: Overview,

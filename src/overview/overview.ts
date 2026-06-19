@@ -1,4 +1,4 @@
-import { Entry } from "../home/entry";
+import { Entry } from "./entry";
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';

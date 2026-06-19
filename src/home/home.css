@@ -10,10 +10,9 @@
     max-width: 760px;
     margin: 0 auto;
     padding: 2rem 1rem 3rem;
-    min-height: 100vh;
+    min-height: calc(100vh - 160px);
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -35,6 +34,7 @@
     cursor: pointer;
     transition: background 0.3s ease;
     box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+    margin-top: 8.5rem;
 }
 
 .start-button:hover {
@@ -51,9 +51,15 @@
     }
 }
 
+.home-title-container {
+   
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: top;
+}
 .home-title {
     font-size: 1.5rem;
     font-weight: 600;
-    position: relative;
-    top: 3rem;
+    
 }
