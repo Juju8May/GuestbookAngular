@@ -3,32 +3,42 @@
         <h1>{{ title }}</h1>
     </header>
 
-    @if (getEntryById(entryId) === undefined) {
+    @if (entry === undefined) {
     <section class="empty-state">
         <p>Der Eintrag wurde nicht gefunden.</p>
     </section>
     } @else {
     <section class="entry-card">
-        <header class="entry-top">
-            <h2>{{ entry?.name }}</h2>
-            <p>{{ entry?.time | date: 'dd.MM.yyyy, HH:mm' }}</p>
+        <header class="entry-header">
+            @if (entry.user !== undefined) {
+                <h2>{{ entry.user.firstname + ' ' + entry.user.lastname }}</h2>
+            } @else {
+                <h2>Name nicht verfügbar</h2>
+            }
+            <p>{{ entry.time | date: 'dd.MM.yyyy, HH:mm' }}</p>
         </header>
-        <p>{{ entry?.note }}</p>
+        <div class="entry-body">
+        <p>{{ entry.note }}</p>
+        </div>
     </section>
     }
     @if (getCommentsByEntryId(entryId) === undefined) {
     <p>Es gibt noch keine Kommentare zu diesem Eintrag.</p>
     } @else {
     <section class="comment-list">
-        <p>Kommentare:</p>
         @for (comment of getCommentsByEntryId(entryId); track comment.id) {
-        @if (comment === undefined || comment === null) {
-        comment.skip();
-        continue;
-        } @else {
-        <div class="comment-card">
-            <header class="comment-top">
-                <p>{{ comment.name }}</p>
+            @if (comment === undefined || comment === null) {
+                comment.skip();
+                continue;
+            } @else {
+                <h2>Kommentare:</h2>
+                <div class="comment-card">
+                    <header class="comment-top">
+                @if (comment.user !== undefined) {
+                    <h3>{{ comment.user.firstname + ' ' + comment.user.lastname }}</h3>
+                } @else {
+                    <h3>Name nicht verfügbar</h3>
+                }
                 <time>{{ comment.time | date: 'dd.MM.yyyy, HH:mm' }}</time>
             </header>
             <p class="comment-note">{{ comment.note }}</p>
@@ -39,10 +49,21 @@
     }
     <form class="comment-form" (ngSubmit)="addComment()">
         <label for="comment">Neuen Kommentar hinzufügen:</label>
-        <textarea id="comment" [(ngModel)]="newComment.note" name="comment" required></textarea>
-        <input id="comment.firstname" [(ngModel)]="newComment.firstname" name="commentFirstname" required>
-        <input id="comment.lastname" [(ngModel)]="newComment.lastname" name="commentLastname" required>
-        <input type="email" id="comment.email" [(ngModel)]="newComment.email" name="commentEmail" required email="true">
+        <div class="edit-container">
+        <p>Vorname:</p>
+        <input id="comment.firstname" [(ngModel)]="newComment.user.firstname" name="commentFirstname" required minlength="2" maxlength="50"> 
+        
+        <p>Nachname:</p>
+        <input id="comment.lastname" [(ngModel)]="newComment.user.lastname" name="commentLastname" required minlength="2" maxlength="50">
+        </div>
+        <div class="edit-container">
+        <p>Email:</p>
+        <input type="email" id="comment.user.email" [(ngModel)]="newComment.user.email" name="commentEmail" required email="true">
+        </div>
+        <div class="edit-container">
+        <p>Kommentar:</p>
+        <textarea id="comment" [(ngModel)]="newComment.note" name="comment" required minlength="10" maxlength="500"></textarea>
+        </div>
         <div class="actions">
             <button type="button" (click)="navigateToOverview()">
                 <img src="../../../assets/images/schaltflache-abbrechen.png" alt="Änderungen abbrechen" class="icon">
@@ -51,4 +72,5 @@
                 <img src="../../../assets/images/speichern.png" alt="Kommentar hinzufügen" class="icon">
             </button>
         </div>
+    </form>
 </main>

@@ -1,33 +1,35 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Entry } from '../../entity/entry';
 import { EntryService } from '../../service/entry-service';
+import { EntryCommentEntity } from '../../entity/entry-comment-entity';
+import { User } from '../../entity/user';
+import { DatePipe } from '@angular/common';
 
-interface EntryCommentModel {
-    userId: number;
-    noteId: number;
-    note: string;
-    time: Date;
-}
 
 @Component({
     selector: 'comment',
     standalone: true,
-    imports: [FormsModule],
-    templateUrl: './comment.html',
-    styleUrls: ['./comment.css'],
+    imports: [DatePipe, FormsModule],
+    templateUrl: './entry-comment.html',
+    styleUrls: ['./entry-comment.css'],
 })
 export class EntryComment {
+
     title = 'Kommentar hinzufügen';
-    entryId = 0;
-    userId = 0;
+    entryId: number;
     entry: Entry | undefined;
-    comments: EntryCommentModel[] = [];
-    newComment: EntryCommentModel = {
-        userId: 0,
-        noteId: 0,
+    
+    newComment: EntryCommentEntity = {
+        id: 0,
         note: '',
+        user: {
+            id: 0,
+            firstname: '',
+            lastname: '',
+            email: '',
+        },
         time: new Date(),
     };
 
@@ -48,11 +50,30 @@ export class EntryComment {
         this.router.navigate(['/edit', this.entryId]);
     }
 
-    addComment(newComment: EntryCommentModel): void {
-        if (!this.entry) {
-            return;
+    addComment(): void {
+        if (this.entry && this.newComment.note.trim() && this.newComment.user.firstname && this.newComment.user.lastname && this.newComment.user.email) {
+            this.newComment.time = new Date();
+            this.service.addCommentToEntry(this.entry.id, this.newComment);
+            
+            // Formular zurücksetzen
+            this.newComment = {
+                id: 0,
+                note: '',
+                user: {
+                    id: 0,
+                    firstname: '',
+                    lastname: '',
+                    email: '',
+                },
+                time: new Date(),
+            };
+            
+            this.navigateToOverview();
         }
-        this.entry.comments.push(newComment);
-        this.service.saveEntry(this.entry);
     }
+    getCommentsByEntryId(entryId: number): EntryCommentEntity[] {
+        const entry = this.service.findEntryById(entryId);
+        return entry ? entry.comments : [];
+    }
+
 }

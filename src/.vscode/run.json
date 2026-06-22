@@ -1,0 +1,22 @@
+{
+  "version": "0.8.6",
+  "configurations": [
+    {
+      "id": "481b4b5e-41d4-46f3-9d2f-f4070f7392b0",
+      "name": "Guestbook Website",
+      "projectPath": "",
+      "workspaceFolder": "src",
+      "env": {},
+      "closeTerminalOnExit": true,
+      "programArgs": "",
+      "vmArgs": "",
+      "type": "npm",
+      "typeOptions": {
+        "scriptName": "start",
+        "packageManager": "npm",
+        "nodePath": "/home/julia/.nvm/versions/node/v24.16.0"
+      }
+    }
+  ],
+  "groups": []
+}

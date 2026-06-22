@@ -13,7 +13,7 @@
 		} @else {
 		<div class="entry-card" (click)="editEntry(entry.id)">
 			<header class="entry-top">
-				<p>{{ entry.name }}</p>
+				<p>{{ entry.user.firstname + ' ' + entry.user.lastname }}</p>
 				<time>{{ entry.time | date: 'dd.MM.yyyy, HH:mm' }}</time>
 			</header>
 			<p class="entry-note">{{ entry.note }}</p>

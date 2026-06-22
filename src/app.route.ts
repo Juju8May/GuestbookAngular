@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { Edit } from './app/entry/edit/edit';
-import { Home } from './home/home';
-import { Overview } from './overview/overview';
-import { CommentANote } from './app/entry/comment/entry-comment';
+import { App } from './app';
+import { Overview } from './app/overview/overview';
+import { EntryComment } from './app/entry/comment/entry-comment';
+import { Home } from './app/home/home';
 
 export const routes: Routes = [
     {

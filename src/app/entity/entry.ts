@@ -1,8 +1,11 @@
+import { EntryCommentEntity } from "./entry-comment-entity";
+import { User } from "./user";
+
 export interface Entry {
     id: number,
-    userId: number,
+    user: User,
     note: string,
     time: Date,
-    comments: Comment[],
+    comments: EntryCommentEntity[],
 }
 

@@ -1,14 +1,15 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Entry } from '../../entity/entry';
 import { EntryService } from '../../service/entry-service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: 'edit',
     standalone: true,
-    imports: [DatePipe, FormsModule],
+    imports: [DatePipe, ReactiveFormsModule],
     templateUrl: './edit.html',
     styleUrls: ['./edit.css'],
 })
@@ -16,7 +17,10 @@ export class Edit {
     title = 'Eintrag bearbeiten';
     entryId = 0;
     entry: Entry | undefined;
-
+    isSubmitted = false;
+    entryForm = new FormGroup({
+        note: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]),
+    });
     constructor(
         public router: Router,
         private route: ActivatedRoute,
@@ -24,17 +28,29 @@ export class Edit {
     ) {
         this.entryId = Number(this.route.snapshot.paramMap.get('id'));
         this.entry = this.service.findEntryById(this.entryId);
+        if (this.entry) {
+            this.entryForm.patchValue({ note: this.entry.note });
+        }
+    }
+
+    get noteControl(): FormControl<string | null> {
+        return this.entryForm.get('note') as FormControl<string | null>;
     }
 
     navigateToOverview(): void {
         this.router.navigate(['/overview']);
     }
 
+
+
     saveEntry(): void {
-        if (!this.entry) {
+        this.isSubmitted = true;
+        if (!this.entry || this.entryForm.invalid) {
+            this.entryForm.markAllAsTouched();
             return;
         }
 
+        this.entry.note = this.noteControl.value?.trim() ?? '';
         this.service.saveEntry(this.entry);
         this.navigateToOverview();
     }
@@ -50,6 +66,6 @@ export class Edit {
         if (!this.entry) {
             return;
         }
-        this.router.navigate(['/comment', this.entry.id], );
+        this.router.navigate(['/comment', this.entry.id],);
     }
 }

@@ -9,11 +9,26 @@
     </section>
     } @else {
     <section class="entry-card">
-        <h2>{{ entry?.name }}</h2>
-        <p>{{ entry?.time | date: 'dd.MM.yyyy, HH:mm' }}</p>
-        <form class="entry-form" (ngSubmit)="saveEntry()">
+        <div class="entry-header">
+        @if (entry.user !== undefined) {
+            <h2>{{ entry.user.firstname + ' ' + entry.user.lastname }}</h2>
+        } @else {
+            <h2>Name nicht verfügbar</h2>
+        }
+        <p>{{ entry.time | date: 'dd.MM.yyyy, HH:mm' }}</p>
+        </div>  
+        <form class="entry-form" [formGroup]="entryForm" (ngSubmit)="saveEntry()">
             <label for="note">Notiz:</label>
-            <textarea id="note" [(ngModel)]="entry!.note" name="note" required></textarea>
+            <textarea id="note" formControlName="note"></textarea>
+            <div *ngIf="(noteControl.touched || isSubmitted) && noteControl.hasError('required')" class="error-message">
+                Die Notiz ist erforderlich.
+            </div>
+            <div *ngIf="(noteControl.touched || isSubmitted) && noteControl.hasError('minlength')" class="error-message">
+                Die Notiz muss mindestens 10 Zeichen lang sein.
+            </div>
+            <div *ngIf="(noteControl.touched || isSubmitted) && noteControl.hasError('maxlength')" class="error-message">
+                Die Notiz darf maximal 500 Zeichen lang sein.
+            </div>
             <div class="actions">
                 <button type="button" (click)="commentEntry()">
                     <img src="../../../assets/images/kommentar.png" alt="Kommentar hinzufügen" class="icon">

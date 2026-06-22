@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'home-root',
+  selector: 'home',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [DatePipe,RouterOutlet],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })

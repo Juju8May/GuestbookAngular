@@ -1,8 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { Entry } from "../app/entity/entry";
-import { EntryService } from "../app/service/entry-service";
+import { Entry } from "../entity/entry";
+import { EntryService } from "../service/entry-service";
 
 @Component({
     selector: 'overview',
