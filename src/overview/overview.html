@@ -1,20 +1,28 @@
 <main class="page">
-	@if (entries.length === 0) {
-		<section class="empty-state">
-			<p>Es gibt noch keine Einträge.</p>
-		</section>
-	} @else {
-		<section class="entry-list">
-			@for (entry of entries; track entry.id) {
-				<article class="entry-card">
-					<header class="entry-top">
-						<h2>{{ entry.name }}</h2>
-						<time>{{ entry.time | date: 'dd.MM.yyyy, HH:mm' }}</time>
-					</header>
-					<p class="entry-note">{{ entry.note }}</p>
-				</article>
-			}
-		</section>
+	@if (getEntries().length === 0) {
+	<section class="empty-state">
+		<p>Es gibt noch keine Einträge.</p>
+	</section>
+	} @else{
+	<section class="entry-list">
+		<p>Bereits geschriebene Einträge:</p>
+		@for (entry of getEntries(); track entry.id) {
+		@if (entry === undefined || entry === null) {
+		entry.skip();
+		continue;
+		} @else {
+		<div class="entry-card" (click)="editEntry(entry.id)">
+			<header class="entry-top">
+				<p>{{ entry.name }}</p>
+				<time>{{ entry.time | date: 'dd.MM.yyyy, HH:mm' }}</time>
+			</header>
+			<p class="entry-note">{{ entry.note }}</p>
+		</div>
+		}
+		}
+	</section>
 	}
-    <button class="add-entry-button" (click)="addEntry()">Eintrag hinzufügen</button>
+	<button class="add-entry-button" (click)="addEntry()">
+		<img src="../../../assets/images/tab.png" alt="Eintrag hinzufügen" class="icon">
+	</button>
 </main>

@@ -1,0 +1,54 @@
+<main class="page">
+    <header class="header">
+        <h1>{{ title }}</h1>
+    </header>
+
+    @if (getEntryById(entryId) === undefined) {
+    <section class="empty-state">
+        <p>Der Eintrag wurde nicht gefunden.</p>
+    </section>
+    } @else {
+    <section class="entry-card">
+        <header class="entry-top">
+            <h2>{{ entry?.name }}</h2>
+            <p>{{ entry?.time | date: 'dd.MM.yyyy, HH:mm' }}</p>
+        </header>
+        <p>{{ entry?.note }}</p>
+    </section>
+    }
+    @if (getCommentsByEntryId(entryId) === undefined) {
+    <p>Es gibt noch keine Kommentare zu diesem Eintrag.</p>
+    } @else {
+    <section class="comment-list">
+        <p>Kommentare:</p>
+        @for (comment of getCommentsByEntryId(entryId); track comment.id) {
+        @if (comment === undefined || comment === null) {
+        comment.skip();
+        continue;
+        } @else {
+        <div class="comment-card">
+            <header class="comment-top">
+                <p>{{ comment.name }}</p>
+                <time>{{ comment.time | date: 'dd.MM.yyyy, HH:mm' }}</time>
+            </header>
+            <p class="comment-note">{{ comment.note }}</p>
+        </div>
+        }
+        }
+    </section>
+    }
+    <form class="comment-form" (ngSubmit)="addComment()">
+        <label for="comment">Neuen Kommentar hinzufügen:</label>
+        <textarea id="comment" [(ngModel)]="newComment.note" name="comment" required></textarea>
+        <input id="comment.firstname" [(ngModel)]="newComment.firstname" name="commentFirstname" required>
+        <input id="comment.lastname" [(ngModel)]="newComment.lastname" name="commentLastname" required>
+        <input type="email" id="comment.email" [(ngModel)]="newComment.email" name="commentEmail" required email="true">
+        <div class="actions">
+            <button type="button" (click)="navigateToOverview()">
+                <img src="../../../assets/images/schaltflache-abbrechen.png" alt="Änderungen abbrechen" class="icon">
+            </button>
+            <button type="submit">
+                <img src="../../../assets/images/speichern.png" alt="Kommentar hinzufügen" class="icon">
+            </button>
+        </div>
+</main>

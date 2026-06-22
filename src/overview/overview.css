@@ -1,28 +1,46 @@
-:host {
-    display: block;
-    min-height: 100vh;
-    font-family: 'Be Vietnam Pro', sans-serif;
-    color: #1e293b;
-    background: linear-gradient(160deg, #f8fafc 0%, #eef2ff 100%);
-}
-
 .page {
     max-width: 760px;
     margin: 0 auto;
-    padding: 2rem 1rem 3rem;
+    padding: 2rem 1rem 8rem;
+    min-height: calc(100vh - 160px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.empty-state {
+    margin-top: 1.4rem;
+    width: 100%;
+    background: #ffffffb8;
+    border: 1px dashed #cbd5e1;
+    border-radius: 14px;
+    padding: 1rem;
+    color: #334155;
 }
 
 .entry-list {
+    width: 100%;
     display: grid;
     gap: 0.9rem;
     margin-top: 1.4rem;
 }
 
+.entry-list > p {
+    margin: 0;
+    color: #334155;
+    font-weight: 600;
+}
+
 .entry-card {
-    background:linear-gradient(160deg, #ec489a48 0%, white 100%);
+    background: #fcd2d2cc;
     border: 1px solid #486d9e;
-    padding: 1rem;
+    padding: 0.5rem;
     box-shadow: 0 10px 22px -18px #334155;
+}
+
+.entry-card:hover {
+    background: #fcd2d2;
+    cursor: pointer;
 }
 
 .entry-top {
@@ -32,9 +50,10 @@
     gap: 0.75rem;
 }
 
-.entry-top h2 {
+.entry-top p {
     margin: 0;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .entry-top time {
@@ -48,27 +67,44 @@
     line-height: 1.5;
 }
 
-.empty-state {
-    margin-top: 1.4rem;
-    background: #ffffffb8;
-    border: 1px dashed #cbd5e1;
-    border-radius: 14px;
-    padding: 1rem;
-    color: #334155;
+.add-entry-button {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    background: #fcd2d288;
+    border: 1px solid #486d9e;
+    border-radius: 6px;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+.add-entry-button:hover {
+    background: #fcd2d2;
+    cursor: pointer;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
 }
 
 @media (max-width: 560px) {
+    .page {
+        padding-bottom: 8.5rem;
+    }
+
     .entry-top {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.35rem;
     }
-}
-.add-entry-button {
-  margin-top: 2rem;
-  display: flex;
-  justify-self: center;
-  padding: 0.75rem 1.25rem;
-  border: solid 1px black;
-  background: #ec489a5e;
+
+    .add-entry-button {
+        bottom: calc(6.2rem + env(safe-area-inset-bottom));
+    }
 }

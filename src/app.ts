@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import { DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,6 @@ import {RouterOutlet} from '@angular/router';
   styleUrls: ['./app.css'],
 })
 export class App {
-  title = 'Gästebuch';
+  title = 'Willkommen!';
+
 }

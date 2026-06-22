@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
@@ -10,7 +11,7 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 
 export class Home {
-  title = 'Willkommen zum Gästebuch';
+  title = 'Willkommen!';
   constructor(public router: Router) {
     this.router = router;
   }

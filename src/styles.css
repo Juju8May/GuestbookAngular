@@ -1,21 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
-:root {
-  --primary-color: #605dc8;
-  --secondary-color: #8b89e6;
-  --accent-color: #e8e7fa;
-  --shadow-color: #e8e8e8;
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    color: #1e293b;
 }
-
-button.primary {
-  padding: 10px;
-  border: solid 1px var(--primary-color);
-  background: var(--primary-color);
-  color: white;
-  border-radius: 8px;
+.header {
+    position: relative;
+    justify-content: center;
+    align-items: top;
 }
 
 body {
   font-family: 'Be Vietnam Pro', sans-serif;
+  max-height: calc(100% - 120px);
 }
 
 .header-bar {
@@ -57,4 +55,8 @@ footer {
   white-space: nowrap;
   display: inline-block;
   gap: 0.5rem;
+}
+.icon {
+  width: 24px;
+  height: 24px;
 }

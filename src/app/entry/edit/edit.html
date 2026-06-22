@@ -1,0 +1,35 @@
+<main class="page">
+    <header class="header">
+        <h1>{{ title }}</h1>
+    </header>
+
+    @if (entry === undefined) {
+    <section class="empty-state">
+        <p>Der Eintrag wurde nicht gefunden.</p>
+    </section>
+    } @else {
+    <section class="entry-card">
+        <h2>{{ entry?.name }}</h2>
+        <p>{{ entry?.time | date: 'dd.MM.yyyy, HH:mm' }}</p>
+        <form class="entry-form" (ngSubmit)="saveEntry()">
+            <label for="note">Notiz:</label>
+            <textarea id="note" [(ngModel)]="entry!.note" name="note" required></textarea>
+            <div class="actions">
+                <button type="button" (click)="commentEntry()">
+                    <img src="../../../assets/images/kommentar.png" alt="Kommentar hinzufügen" class="icon">
+                </button>
+                <button type="submit">
+                    <img src="../../../assets/images/speichern.png" alt="Änderungen speichern" class="icon">
+                </button>
+                <button type="button" (click)="deleteEntry()">
+                    <img src="../../../assets/images/mulleimer.png" alt="Eintrag löschen" class="icon">
+                </button>
+                <button type="button" (click)="navigateToOverview()">
+                    <img src="../../../assets/images/schaltflache-abbrechen.png" alt="Änderungen abbrechen"
+                        class="icon">
+                </button>
+            </div>
+        </form>
+    </section>
+    }
+</main>
