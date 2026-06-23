@@ -75,8 +75,8 @@
     background: #fcd2d288;
     border:none;
     border-radius: 6px;
-    transition: background 0.2s;
-    z-index: 10;
+    margin-top: 1.5rem;
+
 }
 
 .add-entry-button:hover {
@@ -89,18 +89,3 @@
     height: 24px;
 }
 
-@media (max-width: 560px) {
-    .page {
-        padding-bottom: 8.5rem;
-    }
-
-    .entry-top {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.35rem;
-    }
-
-    .add-entry-button {
-        bottom: calc(6.2rem + env(safe-area-inset-bottom));
-    }
-}

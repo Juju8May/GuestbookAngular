@@ -1,0 +1,2 @@
+docker run --name guestbook -e MARIADB_ROOT_PASSWORD=audi -e MARIADB_USER=julia -e MARI
+ADB_PASSWORD=audi -e MARIADB_DATABASE=guestbook_Maria_Db -p 3306:3306 mariadb:latest

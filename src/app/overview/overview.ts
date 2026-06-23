@@ -1,13 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { Entry } from "../entity/entry";
 import { EntryService } from "../service/entry-service";
 
 @Component({
     selector: 'overview',
     standalone: true,
-    imports: [DatePipe, RouterOutlet],
+    imports: [DatePipe],
     templateUrl: './overview.html',
     styleUrls: ['./overview.css'],
 })
@@ -17,7 +17,10 @@ export class Overview {
     constructor(public router: Router, public service: EntryService) {
         this.router = router;
         this.service = service;
+        this.service.getEntries();
     }
+
+
     editEntry(entryId: number): void {
         this.router.navigate(['/edit', entryId]);
     }
