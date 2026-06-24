@@ -7,10 +7,12 @@ import { User } from "../entity/user";
 
 @Injectable({ providedIn: 'root' })
 export class EntryService {
-    private readonly springApiBaseUrl = 'http://localhost:8080';
-    httpConnectionToBackend: HttpClient;
+
+    private readonly springBackendApi = 'http://localhost:8080/api/';
+
+    backendClient: HttpClient;
   constructor(httpConnectionToBackend: HttpClient) {
-    this.httpConnectionToBackend = httpConnectionToBackend;
+    this.backendClient = httpConnectionToBackend;
   }
 
     users = [
@@ -26,7 +28,7 @@ export class EntryService {
     ];
 
     getEntries(): Entry[] {
-        this.httpConnectionToBackend.get<Entry[]>(`${this.springApiBaseUrl}/notes`).subscribe({
+        this.backendClient.get<Entry[]>(`${this.springBackendApi}/notes`).subscribe({
             next: (entries) => {
                 this.entries = entries;
             },
@@ -38,10 +40,6 @@ export class EntryService {
         return this.entries;
     }
 
-    getEntriesFromSpring(): Observable<Entry[]> {
-        return this.httpConnectionToBackend.get<Entry[]>(`${this.springApiBaseUrl}/notes`);
-    }
-
     addEntry() {
         this.users.push({ id: this.users.length + 1, firstname: 'New', lastname: 'User', email: 'hello@gmail.com' });
         this.entries.push({
@@ -51,7 +49,7 @@ export class EntryService {
             time: new Date(),
             comments: [],
         });
-        this.httpConnectionToBackend.post<Entry>(`${this.springApiBaseUrl}/new`, this.entries[this.entries.length - 1]).subscribe({
+        this.backendClient.post<Entry>(`${this.springBackendApi}/new`, this.entries[this.entries.length - 1]).subscribe({
             error: (error) => {
                 console.error('Error creating entry:', error);
             },
@@ -63,11 +61,11 @@ export class EntryService {
     }
 
     saveEntry(entry: Entry): void {
-        this.httpConnectionToBackend.post<Entry>(`${this.springApiBaseUrl}/edit`, entry.id);
+        this.backendClient.post<Entry>(`${this.springBackendApi}/edit`, entry.id);
     }
 
     deleteEntry(id: number) {
-        this.httpConnectionToBackend.delete(`${this.springApiBaseUrl}/delete/${id}`).subscribe({
+        this.backendClient.delete(`${this.springBackendApi}/delete/${id}`).subscribe({
             next: () => {
                 console.log(`Entry with id ${id} deleted successfully.`);
                 this.entries = this.entries.filter(entry => entry.id !== id);
