@@ -63,8 +63,12 @@
 }
 
 .entry-note {
-    margin: 0.55rem 0 0;
+    display: block;
+    text-align: left;
+    margin: 0;
     line-height: 1.5;
+    white-space: nowrap;
+    color: #334155;
 }
 
 .add-entry-button {
@@ -75,8 +79,7 @@
     background: #fcd2d288;
     border:none;
     border-radius: 6px;
-    margin-top: 1.5rem;
-
+    margin-top: 1rem;
 }
 
 .add-entry-button:hover {
@@ -85,7 +88,23 @@
 }
 
 .icon {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
 }
+.entry-comment-count {
+    display: flex;
+    align-self: flex-end;
+    gap: 0.5rem;
+    color: #334155;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+.entry-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.55rem;
 
+}

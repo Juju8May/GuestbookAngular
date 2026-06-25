@@ -66,6 +66,6 @@ export class Edit {
         if (!this.entry) {
             return;
         }
-        this.router.navigate(['/comment', this.entry.id],);
+        this.router.navigate([`/entry/${this.entryId}/comment`]);
     }
 }

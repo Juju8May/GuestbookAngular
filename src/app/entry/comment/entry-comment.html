@@ -49,16 +49,13 @@
     }
     <form class="comment-form" (ngSubmit)="addComment()">
         <label for="comment">Neuen Kommentar hinzufügen:</label>
-        <div class="edit-container">
+        <div class="edit-container person-fields">
         <p>Vorname:</p>
-        <input id="comment.firstname" [(ngModel)]="newComment.user.firstname" name="commentFirstname" required minlength="2" maxlength="50"> 
-        
+        <input id="comment.firstname" [(ngModel)]="newComment.user.firstname" name="commentFirstname" required minlength="2" maxlength="50">
         <p>Nachname:</p>
         <input id="comment.lastname" [(ngModel)]="newComment.user.lastname" name="commentLastname" required minlength="2" maxlength="50">
-        </div>
-        <div class="edit-container">
         <p>Email:</p>
-        <input type="email" id="comment.user.email" [(ngModel)]="newComment.user.email" name="commentEmail" required email="true">
+        <input type="email" id="comment.user.email" [(ngModel)]="newComment.user.email" name="commentEmail" required email="true" minlength="5" maxlength="100">
         </div>
         <div class="edit-container">
         <p>Kommentar:</p>
@@ -68,7 +65,7 @@
             <button type="button" (click)="navigateToOverview()">
                 <img src="../../../assets/images/schaltflache-abbrechen.png" alt="Änderungen abbrechen" class="icon">
             </button>
-            <button type="submit">
+            <button type="submit" (cancel)="addComment()">
                 <img src="../../../assets/images/speichern.png" alt="Kommentar hinzufügen" class="icon">
             </button>
         </div>

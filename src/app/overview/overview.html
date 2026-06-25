@@ -16,7 +16,13 @@
 				<p>{{ entry.user.firstname + ' ' + entry.user.lastname }}</p>
 				<time>{{ entry.time | date: 'dd.MM.yyyy, HH:mm' }}</time>
 			</header>
-			<p class="entry-note">{{ entry.note }}</p>
+			<div class="entry-body">
+				<p class="entry-note">{{ entry.note }}</p>
+				<p class="entry-comment-count">
+					<img src="../../assets/images/kommentar.png" alt="Kommentare" class="icon">
+					{{ getCommentsCount(entry) }}
+				</p>
+			</div>
 		</div>
 		}
 		}

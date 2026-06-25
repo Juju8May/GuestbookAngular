@@ -1,8 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Entry } from "../entity/entry";
 import { EntryService } from "../service/entry-service";
+import { Signal } from "@angular/core";
 
 @Component({
     selector: 'overview',
@@ -11,18 +12,17 @@ import { EntryService } from "../service/entry-service";
     templateUrl: './overview.html',
     styleUrls: ['./overview.css'],
 })
+
 export class Overview {
     title = 'Überblick';
 
     constructor(public router: Router, public service: EntryService) {
         this.router = router;
         this.service = service;
-        this.service.getEntries();
     }
 
-
     editEntry(entryId: number): void {
-        this.router.navigate(['/edit', entryId]);
+        this.router.navigate([`/entry/${entryId}/edit`]);
     }
     navigateToHome(): void {
         this.router.navigate(['/home']);
@@ -32,5 +32,8 @@ export class Overview {
     }
     addEntry(): void {
         this.service.addEntry();
+    }
+    getCommentsCount(entry: Entry): number {
+        return entry ? entry.comments.length : 0;
     }
 }

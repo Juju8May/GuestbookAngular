@@ -5,7 +5,6 @@ import { Router, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'home',
   standalone: true,
-  imports: [DatePipe,RouterOutlet],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })

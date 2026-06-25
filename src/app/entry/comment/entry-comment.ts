@@ -17,7 +17,7 @@ import { DatePipe } from '@angular/common';
 })
 export class EntryComment {
 
-    title = 'Kommentar hinzufügen';
+    title = 'Notiz:';
     entryId: number;
     entry: Entry | undefined;
     
@@ -51,25 +51,8 @@ export class EntryComment {
     }
 
     addComment(): void {
-        if (this.entry && this.newComment.note.trim() && this.newComment.user.firstname && this.newComment.user.lastname && this.newComment.user.email) {
-            this.newComment.time = new Date();
-            this.service.addCommentToEntry(this.entry.id, this.newComment);
-            
-            // Formular zurücksetzen
-            this.newComment = {
-                id: 0,
-                note: '',
-                user: {
-                    id: 0,
-                    firstname: '',
-                    lastname: '',
-                    email: '',
-                },
-                time: new Date(),
-            };
-            
-            this.navigateToOverview();
-        }
+        this.service.addCommentToEntry(this.entryId, this.newComment);
+        this.navigateToOverview();
     }
     getCommentsByEntryId(entryId: number): EntryCommentEntity[] {
         const entry = this.service.findEntryById(entryId);

@@ -140,11 +140,15 @@
 } 
 .comment-card {
     background: #f1f5f9;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
+    border: 1px solid #8cb0dd;
     padding: 0.5rem;
     color: #334155;
     box-shadow: 0 4px 12px -8px #334155;
+}
+.comment-card time {
+    color: #566d8f;
+    font-size: 0.85rem;
+    white-space: nowrap;
 }
 .comment-card p {
     font-size: 0.9rem;
@@ -172,11 +176,32 @@
     display: flex;
     gap: 0.5rem;
     align-self: flex-start;
+    width: content;
+    margin-top: 0.5rem;
+
+}
+
+.person-fields {
+    flex-direction: row;
+    align-items: left;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.person-fields p {
+    margin: 0;
+    align-self: center;
+}
+
+.person-fields input {
+    max-height: 30px;
+    max-width: 150px;
 }
 .edit-container input {
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 0.9rem;
-    border: 3px solid #cbd5e1;
+    border: 2px solid #cbd5e1;
     border-radius: 8px;
     color: #1e293b;
     outline: none;
@@ -186,13 +211,14 @@
 .edit-container textarea {
     font-family: 'Be Vietnam Pro', sans-serif;
     font-size: 0.9rem;
-    border: 3px solid #cbd5e1;
+    border: 2px solid #cbd5e1;
     border-radius: 8px;
     color: #1e293b;
     outline: none;
     transition: border-color 0.2s;
     resize: vertical;
     min-height: 120px;
+    min-width: 580px;
 }
 .edit-container input:invalid{
     border-color: #a13434;

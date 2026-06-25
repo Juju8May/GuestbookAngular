@@ -22,12 +22,12 @@ export const routes: Routes = [
         component: Overview,
     },
     {
-        path: 'edit/:id',
+        path: 'entry/:id/edit',
         title: 'Eintrag bearbeiten',
         component: Edit,
     },
     {
-        path: 'comment/:id',
+        path: 'entry/:id/comment',
         title: 'Kommentar hinzufügen',
         component: EntryComment,
     }
