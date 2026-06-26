@@ -4,5 +4,5 @@ node_modules
 src/app/services/GuestbookAngular.code-workspace
 .angular/*
 .vscode/run.json
-
+*.properties
 
