@@ -60,7 +60,7 @@ public class GuestBookControllerTest {
         Model model = Mockito.mock(Model.class);
 
         // act
-        String viewName = controller.newNote(model);
+        String viewName = controller.saveNote(model, new Note(), Mockito.mock(BindingResult.class));
 
         // assert
         verify(model).addAttribute(eq("note"), any(Note.class));
