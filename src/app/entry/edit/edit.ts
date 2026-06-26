@@ -22,9 +22,14 @@ export class Edit {
     private service = inject(EntryService);
     private route = inject(ActivatedRoute);
     private router = inject(Router);
-    private entryId = Number(this.route.snapshot.paramMap.get('id'));
-    private entry = this.service.findEntryById(this.entryId);
-    
+     entryId = Number(this.route.snapshot.paramMap.get('id'));
+    entry = this.service.findEntryById(this.entryId);
+    constructor() {
+        if (this.entry) {
+            this.entryForm.patchValue({ note: this.entry.note });
+        }
+    }
+
     get noteControl(): FormControl<string | null> {
         return this.entryForm.get('note') as FormControl<string | null>;
     }
