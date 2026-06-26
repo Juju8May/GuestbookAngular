@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Entry } from "../entity/entry";
 import { EntryService } from "../service/entry-service";
@@ -16,10 +16,8 @@ import { Signal } from "@angular/core";
 export class Overview {
     title = 'Überblick';
 
-    constructor(public router: Router, public service: EntryService) {
-        this.router = router;
-        this.service = service;
-    }
+    private router = inject(Router);
+    private service = inject(EntryService);
 
     editEntry(entryId: number): void {
         this.router.navigate([`/entry/${entryId}/edit`]);

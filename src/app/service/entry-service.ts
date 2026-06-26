@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Entry } from "../entity/entry";
 import { EntryCommentEntity } from '../entity/entry-comment-entity';
@@ -10,10 +10,7 @@ export class EntryService {
 
     private readonly springBackendApi = 'http://localhost:8080/api/';
 
-    backendClient: HttpClient;
-  constructor(httpConnectionToBackend: HttpClient) {
-    this.backendClient = httpConnectionToBackend;
-  }
+    private backendClient = inject(HttpClient);
 
     users = [
         { id: 1, firstname: 'Julia', lastname: 'Rudij', email: 'julia@example.com' },

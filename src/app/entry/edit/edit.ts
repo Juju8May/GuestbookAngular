@@ -1,5 +1,4 @@
-import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { DatePipe } from '@angular/common';import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Entry } from '../../entity/entry';
@@ -15,24 +14,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class Edit {
     title = 'Eintrag bearbeiten';
-    entryId = 0;
-    entry: Entry | undefined;
+
     isSubmitted = false;
     entryForm = new FormGroup({
         note: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(500)]),
     });
-    constructor(
-        public router: Router,
-        private route: ActivatedRoute,
-        private service: EntryService,
-    ) {
-        this.entryId = Number(this.route.snapshot.paramMap.get('id'));
-        this.entry = this.service.findEntryById(this.entryId);
-        if (this.entry) {
-            this.entryForm.patchValue({ note: this.entry.note });
-        }
-    }
-
+    private service = inject(EntryService);
+    private route = inject(ActivatedRoute);
+    private router = inject(Router);
+    private entryId = Number(this.route.snapshot.paramMap.get('id'));
+    private entry = this.service.findEntryById(this.entryId);
+    
     get noteControl(): FormControl<string | null> {
         return this.entryForm.get('note') as FormControl<string | null>;
     }
